@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Date Proposal for Simran ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: url('a_digital_illustration_for_a_date_invitation_webpa.png') no-repeat center center fixed;
+    background-size: cover;
+    overflow: hidden;
+}
+
+h1 {
+    margin-top: 80px;
+    font-size: 28px;
+    color: #fff;
+    text-shadow: 2px 2px 5px #000;
+}
+
+button {
+    padding: 15px 40px;
+    font-size: 22px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin: 20px;
+    transition: transform 0.3s;
+}
+
+#yes {
+    background: #ff4d6d;
+    color: white;
+}
+
+#no {
+    background: #333;
+    color: white;
+    position: absolute;
+}
+
+.heart {
+    position: absolute;
+    font-size: 24px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh); }
+    100% { transform: translateY(-10vh); }
+}
+
+.confetti {
+    position: absolute;
+    font-size: 20px;
+    animation: confettiFall 3s linear forwards;
+}
+
+@keyframes confettiFall {
+    0% { top: -10px; transform: rotate(0deg); }
+    100% { top: 100vh; transform: rotate(360deg); }
+}
+</style>
+
+</head>
+<body>
+
+<h1>Simran ❤️, will you go on a date with me on 23 March 🥺</h1>
+
+<button id="yes">YES 😭</button>
+<button id="no">NO 😅</button>
+
+<script>
+let speed = 1;
+
+const yesBtn = document.getElementById('yes');
+const noBtn = document.getElementById('no');
+
+noBtn.addEventListener('mouseover', moveNo);
+
+function moveNo() {
+    const x = Math.random() * (window.innerWidth - 150);
+    const y = Math.random() * (window.innerHeight - 70);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    // Yes button grows slightly and shows sad face
+    yesBtn.style.transform = `scale(${1 + 0.1 * speed})`;
+    yesBtn.innerText = "YES 😭";
+    speed += 0.5;
+}
+
+yesBtn.addEventListener('click', celebrate);
+
+function celebrate() {
+    yesBtn.innerText = "YES 😍";
+    yesBtn.style.transform = "scale(1.2)";
+
+    // Clear No button
+    noBtn.style.display = 'none';
+
+    // Add hearts
+    setInterval(createHeart, 300);
+
+    // Add confetti
+    for (let i = 0; i < 100; i++) {
+        createConfetti();
+    }
+
+    // Change heading message
+    document.querySelector('h1').innerHTML = "Yay! 🎉 Date confirmed 😍<br>Diwali vibes ✨💖";
+}
+
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = '💖';
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}
+
+function createConfetti() {
+    const confetti = document.createElement('div');
+    confetti.classList.add('confetti');
+    const emojis = ['🎆','🎇','✨','🎉','💥'];
+    confetti.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+    confetti.style.left = Math.random() * window.innerWidth + "px";
+    confetti.style.fontSize = 15 + Math.random() * 20 + "px";
+    document.body.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 3000);
+}
+</script>
+
+</body>
+</html>
